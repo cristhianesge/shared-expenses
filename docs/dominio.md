@@ -12,7 +12,7 @@ El objetivo principal es reducir el tiempo necesario para revisar boletas y calc
 
 ## Participante
 
-Representa una persona involucrada en la distribución de gastos.
+Representa una persona involucrada en la distribución de gastos. Tiene una o mas reglas de aporte
 
 Ejemplos:
 
@@ -28,7 +28,7 @@ Un participante puede tener una o más reglas de aporte.
 
 Representa una compra realizada en un comercio.
 
-Una boleta contiene uno o más productos.
+Una boleta contiene uno o más items de boleta.
 
 Datos relevantes:
 
@@ -42,7 +42,7 @@ Datos relevantes:
 
 ## Item de boleta
 
-Representa un artículo incluido en una boleta. En una boleta hay lista de items ( nombre o codigo que puede editarse luego porque puede venir con nombres cortos extraños) y precio y/o descuentos, aca tambien se puede clasificar el producto por visibilidad. Podria existir productos que no son aplicables a todos los participantes.
+Representa un artículo incluido en una boleta. En una boleta hay lista de items ( nombre o codigo que puede editarse luego porque puede venir con nombres cortos extraños) y precio y/o descuentos, aca tambien se puede clasificar el producto por visibilidad. Podria existir items de boleta que no son aplicables a todos los participantes.
 
 Ejemplos:
 
@@ -64,7 +64,7 @@ Cada producto tiene:
 
 ## Destino
 
-Permite agrupar productos que comparten una misma lógica de distribución.
+Representa el destino al que se imputa un gasto para aplicar las reglas de distribución.
 
 Ejemplos:
 
@@ -79,20 +79,17 @@ Las Destinos son configurables por el usuario.
 
 ## Regla de aporte
 
-Define qué porcentaje debe aportar cada participante para una Destino determinada.
+Representa la participación de un participante en un destino.
 
-Ejemplos:
+Cada regla define el porcentaje de aporte que corresponde a un participante para un destino específico.
+
+Ejemplo
 
 Destino: Emma
 
-* Mamá: 30%
-* Papá: 70%
+Papá -> 70%
 
-Destino: Común
-
-* Mamá: 65%
-* Papá: 35%
-
+Mamá -> 30%
 ---
 
 ## Visibilidad
@@ -110,7 +107,7 @@ Los items ocultos no son considerados en los cálculos compartidos ni son visibl
 
 ## Liquidación
 
-Representa un resumen de gastos compartidos para un período determinado.
+Representa un resumen de gastos compartidos para un período determinado. Resume varias boletas
 
 Datos relevantes:
 
@@ -169,12 +166,40 @@ Los participantes se asocian a una o mas destinos
 
 ---
 
+## RN-007
+
+La suma de los porcentajes de aporte de un destino debe ser exactamente 100%.
+
+Muy importante.
+
+---
+
+## RN-008
+
+Un Item de Boleta solo puede pertenecer a un Destino.
+
+---
+
+## RN-009
+
+Una Liquidación solo considera Items de Boleta que no hayan sido liquidados previamente.
+
+Esta regla será fundamental.
+
+---
+
+## RN-010
+
+Una Boleta puede pertenecer a una sola Liquidación.
+
+---
+
 
 
 # Flujo principal
 
 1. El usuario registra una boleta.
-2. El sistema obtiene los productos.
+2. El sistema obtiene los items de boleta.
 3. El usuario asigna una Destino a cada producto.
 4. El sistema identifica las reglas asociadas a cada Destino.
 5. El sistema calcula los aportes correspondientes.

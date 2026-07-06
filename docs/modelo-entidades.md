@@ -15,3 +15,7 @@ ItemBoleta
     | N:1
     |
 Boleta
+    |
+    | 1:1
+    |
+Liquidación
