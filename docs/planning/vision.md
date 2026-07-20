@@ -1,0 +1,6 @@
+Grupos
+Pagos
+Transferencias
+Gastos
+OCR
+Estadísticas
