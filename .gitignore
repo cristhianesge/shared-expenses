@@ -1,2 +1,14 @@
+# IA
 .ai/
 .cursor/
+
+# Cursor
+.cursor-cache/
+
+# Claude Code 
+.claude/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
