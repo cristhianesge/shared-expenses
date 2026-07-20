@@ -1,0 +1,8 @@
+export abstract class DomainException extends Error {
+  abstract readonly status: number;
+
+  constructor(message: string) {
+    super(message);
+    this.name = new.target.name;
+  }
+}

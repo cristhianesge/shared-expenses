@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// model
+enum ContributionRuleType {
+  PERCENTAGE
+  FIXED_AMOUNT
+  EQUAL_SPLIT
+}
+
+model Participant {
+  id                String             @id @default(cuid())
+  name              String
+  contributionRules ContributionRule[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+
+  @@map("participants")
+}
+
+model Destination {
+  id                String             @id @default(cuid())
+  name              String
+  contributionRules ContributionRule[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  receiptItems      ReceiptItem[]
+
+  @@map("destinations")
+}
+
+model ContributionRule {
+  id            String               @id @default(cuid())
+  participantId String
+  destinationId String
+  type          ContributionRuleType
+  destination   Destination          @relation(fields: [destinationId], references: [id])
+  participant   Participant          @relation(fields: [participantId], references: [id])
+  amount        Decimal
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+
+  @@unique([participantId, destinationId])
+  @@index([participantId])
+  @@index([destinationId])
+  @@map("contribution_rules")
+}
+
+model Receipt {
+  id        String        @id @default(cuid())
+  merchant  String
+  date      DateTime
+  total     Decimal
+  items     ReceiptItem[]
+  imageUrl  String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@map("receipts")
+}
+
+model ReceiptItem {
+  id            String       @id @default(cuid())
+  name          String
+  code          String
+  quantity      Int
+  price         Decimal
+  discount      Decimal?
+  receiptId     String
+  receipt       Receipt      @relation(fields: [receiptId], references: [id])
+  destinationId String?
+  destination   Destination? @relation(fields: [destinationId], references: [id])
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@index([receiptId])
+  @@index([destinationId])
+  @@map("receipt_items")
+}
