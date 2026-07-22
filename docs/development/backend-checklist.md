@@ -71,3 +71,28 @@ Prisma 7 utiliza PrismaPg como adapter para PostgreSQL y el cliente se genera en
 | `prisma db seed`        |          ✅ Datos iniciales |
 | `prisma db push`        | 🚫 Evitar en este proyecto |
 
+
+Crear grupo
+      ↓
+Crear participantes
+      ↓
+Crear destinos
+      ↓
+Crear reglas
+      ↓
+Registrar boleta
+      ↓
+Registrar ítems
+      ↓
+Clasificar ítems
+      ↓
+Aplicar distribución
+      ↓
+Generar snapshots
+      ↓
+Generar liquidación
+      ↓
+Registrar pagos
+      ↓
+Cerrar período
+

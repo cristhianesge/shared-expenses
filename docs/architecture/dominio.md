@@ -75,7 +75,7 @@ Ejemplos:
 * Colegio
 * Mascotas
 
-Las Destinos son configurables por el usuario.
+Los Destinos son configurables por el usuario.
 
 ---
 
@@ -123,7 +123,9 @@ Todo item debe tener una Destino antes de ser considerado en una liquidación.
 
 ## RN-002
 
-Una Destino puede tener una o más reglas de aporte.
+Una Destino puede tener una o más reglas de aporte.Cada Destino tiene una regla de aporte por defecto (70/30, partes iguales, monto fijo, etc.).
+Al registrar un gasto, el sistema aplica esa regla automáticamente.
+Si ese gasto es una excepción, el usuario puede elegir "Personalizar reparto" y sobrescribir la regla solo para ese gasto.
 
 ---
 
